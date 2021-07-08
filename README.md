@@ -2,7 +2,42 @@
 
 A Docker image for [Blazer](https://github.com/ankane/blazer)
 
+## Fork notes
+
+This fork enables oracle support and adds ability to select time on start_time/end_time dropdown menus.
+
+This because we have an oracle db storing data that has to be queried also specifiying time to reduce outputs.
+
+### Enabling oracle support
+
+Uncomment these rows on Gemfile:
+
+```
+#gem "activerecord-oracle_enhanced-adapter", :require => false
+#gem "ruby-oci8" # for oracle
+```
+
+Build using *Dockerfile.oracle*
+
+```
+docker build -f Dockerfile.oracle .
+```
+
+
+### Disable time support on dropdown calendars (revert to default blazer behavior)
+
+Remove 
+
+```
+app/views/blazer/_variables.html.erb
+```
+
+Which is overriding the blazer's default
+
+
+
 ## Getting Started
+
 
 Pull the image
 
